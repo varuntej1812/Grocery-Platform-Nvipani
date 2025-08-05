@@ -4,6 +4,24 @@ A microservices-based grocery ordering system using Spring Boot, Spring Cloud, D
 
 ---
 
+ ## Set up Firebase Credentials:
+   - Download your Firebase Admin SDK private key JSON from your Firebase project.
+   - Rename it to `firebase-service-account.json` and place it in:
+     ```
+     user-service/src/main/resources/
+     ```
+
+ ## Build JARs using Maven:
+   GitHub does not store `target/` folders (due to size restrictions), so you must build them:
+   ```bash
+   cd user-service && mvn clean install
+   cd ../product-service && mvn clean install
+   cd ../cart-service && mvn clean install
+   cd ../order-service && mvn clean install
+   cd ../api-gateway && mvn clean install
+   cd ../config-server && mvn clean install
+   ```
+
 ## 📁 Project Structure
 
 ```
@@ -26,6 +44,12 @@ grocery-platform/
 - Uses Firebase Authentication (email/password).
 - All services validate Firebase token independently (Option B).
 - Use provided `login.html` to sign in and get ID Token.
+
+---
+
+## To check the authentication 
+
+- docker logs user-service | Select-String "Firebase"
 
 ---
 
